@@ -1,19 +1,29 @@
 <template>
-  <QuestionCard v-for="question in getUsers.items" :key="question.question_id" :question="question"/>
+  <QuestionCard v-for="question in getAllQuestions.items" :key="question.question_id" :question="question" :complete-details="questionDetails"/>
 </template>
 
 <script setup>
 import { onMounted, computed } from "vue";
-import { useUserStore } from "../stores/users";
+import { useAllQuestionsStore } from "../stores/allQuestions";
 import QuestionCard from './QuestionCard.vue'
 
-const store = useUserStore();
-// const msg = ref("Welcome to my Vuex Store");
-const getUsers = computed(() => {
-  return store.getUsers;
+const store = useAllQuestionsStore();
+const getAllQuestions = computed(() => {
+  return store.getAllQuestions;
 });
+
+const questionDetails = (updated) => {
+  console.log(updated)
+    // todos.value = todos.value.map((todo) => {
+    //     if (todo.id === updatedTodo.id) {
+    //         todo.isCompleted = true;
+    //     }
+
+    //     return todo;
+    // });
+};
 onMounted(() => {
-  store.fetchUsers();
+  store.fetchAllQuestions();
 });
 
 </script>

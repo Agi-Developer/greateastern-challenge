@@ -12,12 +12,12 @@ const router = createRouter({
     {
       path: '/ask',
       name: 'ask',
-      component: () => import('../views/AskQuestion.vue')
+      component: () => import('../views/AskQuestionView.vue')
     },
     {
-      path: '/details',
+      path: '/details/:id',
       name: 'details',
-      component: () => import('../views/QuestionDetails.vue')
+      component: () => import('../views/QuesAnsDetailsView.vue')
     },
     {
       path: '/about',

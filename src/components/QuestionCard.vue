@@ -6,7 +6,14 @@
       </div>
       <div class="text">
         <h2 class="m-2">
-          <a :href='question.link'>{{ question.title }}</a>
+          <router-link
+            :to="{ path: '/details/' + question.question_id }"
+            v-bind:tooltip="question.title" append
+            v-slot="{ href, route, navigate }"
+            >
+            <a>{{ question.title }}</a>
+          </router-link>
+
         </h2>
       </div>
     </div>
@@ -31,7 +38,7 @@ import TagCard from '@/components/TagCard.vue'
 import moment from 'moment'
 // import { ref, computed } from 'vue';
 
-defineProps(['question'])
+defineProps(['question', 'completeDetails'])
 
 // const msg = ref(props);
 // const fakeName = computed( () => {
@@ -39,6 +46,7 @@ defineProps(['question'])
 // } );
 
 </script>
+
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
