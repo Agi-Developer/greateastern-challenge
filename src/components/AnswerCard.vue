@@ -2,12 +2,12 @@
   <div class="answer-card d-flex align-items-center pb-3 mb-3">
     <!-- =================== Votes -->
     <div class="answer-votes-control d-flex flex-column align-items-center col-1">
-      <a href class="vote-answer" @click.prevent="upvoteAnswer(answer._id)">
-        <i class="fas fa-angle-up" :class="{ glowUp: checkUpvoteAnswer }"></i>
+      <a href class="vote-answer">
+        <i class="fas fa-angle-up glowUp"></i>
       </a>
       <h5 class="m-0 counter-votes">{{ answer.score }}</h5>
-      <a href class="vote-answer" @click.prevent="downvoteAnswer(answer._id)">
-        <i class="fas fa-angle-down" :class="{ glowUp: checkDownvoteAnswer }"></i>
+      <a href class="vote-answer">
+        <i class="fas fa-angle-down glowUp"></i>
       </a>
     </div>
     <!-- =================== User Image -->

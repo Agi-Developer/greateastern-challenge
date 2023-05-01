@@ -17,7 +17,7 @@ export const useAllQuestionsStore = defineStore('allQuestions', {
       try {
         const data = await axios({
           method: 'get',
-          url: `/questions/?pagesize=15&order=desc&sort=activity&site=stackoverflow`
+          url: `/questions?page=2&pagesize=15&order=desc&sort=votes&site=stackoverflow`
         })
         this.allQuestions = data.data
       } catch (error) {
@@ -25,5 +25,9 @@ export const useAllQuestionsStore = defineStore('allQuestions', {
         console.log(error)
       }
     }
+  },
+  persist: {
+    storage: sessionStorage,
+    paths: ['allQuestions']
   }
 })

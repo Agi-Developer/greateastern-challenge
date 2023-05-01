@@ -25,5 +25,9 @@ export const useQuestionDetailsStore = defineStore('questionDetails', {
         console.log(error)
       }
     }
+  },
+  persist: {
+    storage: sessionStorage,
+    paths: ['questionDetails']
   }
 })
