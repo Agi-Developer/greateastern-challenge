@@ -58,3 +58,11 @@ npm run test:e2e -- --debug
 ```sh
 npm run lint
 ```
+
+### Cannot access the api calls
+
+I don't have access to send upvotes/downvotes and create new Question
+
+![Screenshot](1.png)
+![Screenshot](2.png)
+![Screenshot](3.png)
