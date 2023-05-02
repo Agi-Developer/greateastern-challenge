@@ -1,19 +1,16 @@
 <template>
   <div class="question-card d-flex flex-column py-3 mb-3 px-2">
     <div class="question d-flex align-items-center mb-2">
-      <div class="upvotes px-1 py-0 btn btn-primary disabled mr-4">
-        + {{ question.score }}
-      </div>
+      <div class="upvotes px-1 py-0 btn btn-primary disabled mr-4">+ {{ question.score }}</div>
       <div class="text">
         <h2 class="m-2">
           <router-link
             :to="{ path: '/details/' + question.question_id }"
-            v-bind:tooltip="question.title" append
-            v-slot="{ href, route, navigate }"
-            >
+            v-bind:tooltip="question.title"
+            append
+          >
             <a>{{ question.title }}</a>
           </router-link>
-
         </h2>
       </div>
     </div>
@@ -36,20 +33,12 @@
 <script setup>
 import TagCard from '@/components/TagCard.vue'
 import moment from 'moment'
-// import { ref, computed } from 'vue';
 
 defineProps(['question', 'completeDetails'])
-
-// const msg = ref(props);
-// const fakeName = computed( () => {
-//       return props.name + " Smith";
-// } );
-
 </script>
 
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
 
 .question-card {
   width: 100%;
@@ -57,7 +46,7 @@ defineProps(['question', 'completeDetails'])
 }
 
 .text h2 {
-  font-family: "Comfortaa";
+  font-family: 'Comfortaa';
   font-size: 20px;
 }
 
@@ -70,6 +59,6 @@ defineProps(['question', 'completeDetails'])
 }
 
 .votes-info {
-  font-family: "Oswald";
+  font-family: 'Oswald';
 }
 </style>

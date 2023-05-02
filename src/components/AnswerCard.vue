@@ -1,12 +1,12 @@
 <template>
-  <div class="answer-card d-flex align-items-center pb-3 mb-3">
+  <div v-if="!loading" class="answer-card d-flex align-items-center pb-3 mb-3">
     <!-- =================== Votes -->
     <div class="answer-votes-control d-flex flex-column align-items-center col-1">
-      <a href class="vote-answer">
+      <a href @click.prevent class="vote-answer">
         <i class="fas fa-angle-up glowUp"></i>
       </a>
       <h5 class="m-0 counter-votes">{{ answer.score }}</h5>
-      <a href class="vote-answer">
+      <a href @click.prevent class="vote-answer">
         <i class="fas fa-angle-down glowUp"></i>
       </a>
     </div>
@@ -32,7 +32,7 @@
 
 <script setup>
 import moment from 'moment'
-defineProps(['answer'])
+defineProps(['answer', 'loading'])
 </script>
 
 <style scoped>

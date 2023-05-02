@@ -5,7 +5,9 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 export const useAllQuestionsStore = defineStore('allQuestions', {
   state: () => ({
-    allQuestions: []
+    allQuestions: [],
+    loading: false,
+    error: false
   }),
   getters: {
     getAllQuestions(state) {
@@ -13,16 +15,20 @@ export const useAllQuestionsStore = defineStore('allQuestions', {
     }
   },
   actions: {
-    async fetchAllQuestions() {
+    async fetchAllQuestions(id = 1) {
+      this.allQuestions = []
+      this.loading = true
       try {
         const data = await axios({
           method: 'get',
-          url: `/questions?page=2&pagesize=15&order=desc&sort=votes&site=stackoverflow`
+          url: `/questions?page=${id}&pagesize=15&order=desc&sort=votes&site=stackoverflow`
         })
         this.allQuestions = data.data
       } catch (error) {
         alert(error)
-        console.log(error)
+        this.error = error
+      } finally {
+        this.loading = false
       }
     }
   },

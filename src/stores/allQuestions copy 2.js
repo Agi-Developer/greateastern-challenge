@@ -1,32 +1,32 @@
-//stores/questionDetails.js
+//stores/users.js
 
 import { defineStore } from 'pinia'
 // Import axios to make HTTP requests
 import axios from 'axios'
-export const useQuestionDetailsStore = defineStore('questionDetails', {
+export const useAllQuestionsStore = defineStore('allQuestions', {
   state: () => ({
-    questionDetails: [],
+    allQuestions: [],
     loading: false,
     error: false
   }),
   getters: {
-    getQuestionDetails(state) {
-      return state.questionDetails
+    getAllQuestions(state) {
+      return state.allQuestions
     }
   },
   actions: {
-    async fetchQuestionDetails(id) {
-      this.questionDetails = []
+    async fetchAllQuestions() {
+      this.allQuestions = []
       this.loading = true
       try {
         const data = await axios({
           method: 'get',
-          url: `/questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`
+          url: `/questions?page=2&pagesize=15&order=desc&sort=votes&site=stackoverflow`
         })
-        this.questionDetails = data.data
+        this.allQuestions = data.data
       } catch (error) {
         alert(error)
-        console.log(error)
+        this.error = error
       } finally {
         this.loading = false
       }
@@ -34,6 +34,6 @@ export const useQuestionDetailsStore = defineStore('questionDetails', {
   },
   persist: {
     storage: sessionStorage,
-    paths: ['questionDetails']
+    paths: ['allQuestions']
   }
 })

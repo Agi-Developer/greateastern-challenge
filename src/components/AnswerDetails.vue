@@ -1,12 +1,15 @@
 <template>
-  <div class="detail">
+  <Loading v-if="loading" />
+  <ErrorMessage v-if="error" :error="error.message" />
+  <div v-if="answerDetails" class="detail">
     <!-- ============ ANSWER AREA ================ -->
     <div class="answer-area d-flex flex-column align-items-start">
       <div class="answers-list mt-4 align-self-stretch">
         <AnswerCard
-          v-for="answer in getAnswerDetails.items"
+          v-for="answer in answerDetails.items"
           :key="answer.answer_id"
           :answer="answer"
+          :loading="loading"
           class="ansCard"
         />
       </div>
@@ -15,18 +18,17 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useAnswerDetailsStore } from '../stores/answerDetails'
 import AnswerCard from './AnswerCard.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-
+import { storeToRefs } from 'pinia'
+const { answerDetails, loading, error } = storeToRefs(useAnswerDetailsStore())
 const store = useAnswerDetailsStore()
-
-const getAnswerDetails = computed(() => {
-  return store.getAnswerDetails
-})
-
+// const getAnswerDetails = computed(() => {
+//   return store.getAnswerDetails
+// })
 onMounted(() => {
   store.fetchAnswerDetails(route.params.id)
 })

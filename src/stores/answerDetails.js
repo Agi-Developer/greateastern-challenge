@@ -5,7 +5,9 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 export const useAnswerDetailsStore = defineStore('answerDetails', {
   state: () => ({
-    answerDetails: []
+    answerDetails: [],
+    loading: false,
+    error: false
   }),
   getters: {
     getAnswerDetails(state) {
@@ -14,6 +16,8 @@ export const useAnswerDetailsStore = defineStore('answerDetails', {
   },
   actions: {
     async fetchAnswerDetails(id) {
+      this.answerDetails = []
+      this.loading = true
       try {
         const data = await axios({
           method: 'get',
@@ -22,7 +26,9 @@ export const useAnswerDetailsStore = defineStore('answerDetails', {
         this.answerDetails = data.data
       } catch (error) {
         alert(error)
-        console.log(error)
+        this.error = error
+      } finally {
+        this.loading = false
       }
     }
   },
