@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <h1 class="m-2">The GreatEastern Stackoverflow</h1>
+  <h1 class="m-2"><router-link :to="{ path: '/' }">The GreatEastern Stackoverflow</router-link></h1>
   <div class="d-flex flex-column">
     <header class="d-flex justify-content-between">
       <ul class="nav nav-tabs">
